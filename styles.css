@@ -6,4 +6,48 @@
 
 body {
     font-family: Verdana, Tahoma, sans-serif;
+    background-color: antiquewhite;
 }
+
+header {
+    text-align: center;
+    padding: 16px;
+}
+
+main {
+    text-align: center;
+    /* margin: 16px; */
+}
+
+#new-book-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    background-color: cornflowerblue;
+    color: antiquewhite;
+    letter-spacing: 1px;
+}
+
+main > h2 {
+    padding: 16px;
+}
+
+#library-shelf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    background-color: lightgray;
+    padding: 16px;
+}
+
+.book {
+    padding: 16px;
+    background-color: lightcoral;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+}
+
