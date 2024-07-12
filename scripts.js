@@ -49,5 +49,9 @@ function updateLibrary() {
 }
 
 myLibrary.push(new Book("The Hobbit", "J.R.R. Tolkien", "295", false));
+myLibrary.push(new Book("Moby-Dick", "Herman Melville", "720", false));
+myLibrary.push(new Book("Frankenstein", "Mary Shelley", "317", false));
+updateLibrary();
 
-addBookToLibrary();
+const newBookBtn = document.querySelector("#new-book-btn");
+newBookBtn.addEventListener("click", addBookToLibrary);
