@@ -13,10 +13,20 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  alert("Add a new book by entering: title, author, number of pages");
-  let title = prompt("Title");
-  let author = prompt("Author");
-  let pages = prompt("Number of pages");
+  //   console.log(modalForm);
+  //   console.log(closeBtn);
+  //   console.log(submitBtn);
+  modalForm.showModal();
+  closeBtn.addEventListener("click", () => {
+    modalForm.close();
+  });
+  let title;
+  let author;
+  let pages;
+  //   alert("Add a new book by entering: title, author, number of pages");
+  //   title = prompt("Title");
+  //   author = prompt("Author");
+  //   pages = prompt("Number of pages");
   myLibrary.push(new Book(title, author, pages, false));
   updateLibrary();
 }
@@ -53,5 +63,9 @@ myLibrary.push(new Book("Moby-Dick", "Herman Melville", "720", false));
 myLibrary.push(new Book("Frankenstein", "Mary Shelley", "317", false));
 updateLibrary();
 
+const modalForm = document.querySelector("#new-book-modal");
+const closeBtn = document.querySelector("#new-book-modal > .close-btn");
+const submitBtn = document.querySelector("#book-submit-btn");
 const newBookBtn = document.querySelector("#new-book-btn");
+
 newBookBtn.addEventListener("click", addBookToLibrary);

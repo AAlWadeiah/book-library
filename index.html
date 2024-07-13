@@ -12,7 +12,55 @@
       <h1>Welcome to the JS Library</h1>
     </header>
     <main>
-      <button id="new-book-btn" type="submit">NEW BOOK</button>
+      <dialog id="new-book-modal">
+        <form id="new-book-form" method="dialog">
+          <button class="close-btn" formmethod="dialog" formnovalidate>
+            X
+          </button>
+          <p class="modal-header">Add a new book</p>
+          <div class="inputs">
+            <div class="input-group">
+              <label for="title-input">Title</label>
+              <input
+                type="text"
+                id="title-input"
+                name="title"
+                required
+                placeholder="The Hobbit"
+                autofocus
+              />
+            </div>
+            <div class="input-group">
+              <label for="author-input">Author</label>
+              <input
+                type="text"
+                id="author-input"
+                name="author"
+                required
+                placeholder="J.R.R. Tolkien"
+              />
+            </div>
+            <div class="input-group">
+              <label for="pages-input">Number of Pages</label>
+              <input
+                type="tel"
+                id="pages-input"
+                name="pages"
+                required
+                placeholder="295"
+              />
+            </div>
+          </div>
+          <button id="book-submit-btn" class="main-cta-btn" type="submit">
+            SUBMIT
+          </button>
+        </form>
+      </dialog>
+
+      <!-- button to open dialog box -->
+      <button id="new-book-btn" class="main-cta-btn" type="submit">
+        NEW BOOK
+      </button>
       <h2>Library Shelf</h2>
       <div id="library-shelf">
         <div class="book">
