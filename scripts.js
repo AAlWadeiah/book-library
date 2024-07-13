@@ -33,11 +33,11 @@ function addBookToLibrary() {
 }
 
 function updateLibrary() {
-  const libShelf = document.querySelector("#library-shelf");
   libShelf.innerHTML = "";
   let books = Array.from(myLibrary).map((bObj, i) => {
     const container = document.createElement("div");
     container.classList.toggle("book");
+    container.dataset.index = i;
 
     const title = document.createElement("h3");
     title.classList.toggle("title");
@@ -51,23 +51,58 @@ function updateLibrary() {
     pageCount.classList.toggle("page-count");
     pageCount.innerText = `${bObj.pages} pages`;
 
-    container.append(title, author, pageCount);
+    const removeBtn = document.createElement("button");
+    removeBtn.innerText = "Remove";
+    removeBtn.value = "remove";
+    removeBtn.classList.toggle("base-btn");
+    removeBtn.classList.toggle("remove-book-btn");
+
+    const readBtn = document.createElement("button");
+    readBtn.innerText = "Read It";
+    readBtn.value = "read";
+    readBtn.classList.toggle("base-btn");
+    readBtn.classList.toggle("read-book-btn");
+
+    container.append(title, author, pageCount, removeBtn, readBtn);
 
     libShelf.appendChild(container);
 
-    console.log(bObj.info());
+    // console.log(container);
+
+    // console.log(bObj.info());
   });
 }
 
-myLibrary.push(new Book("The Hobbit", "J.R.R. Tolkien", "295", false));
-myLibrary.push(new Book("Moby-Dick", "Herman Melville", "720", false));
-myLibrary.push(new Book("Frankenstein", "Mary Shelley", "317", false));
-updateLibrary();
+function removeBook(bookNode) {
+  let conf = confirm(
+    `Are you sure you want to remove "${bookNode.firstElementChild.innerText}" from your library?`
+  );
+  if (conf) {
+    myLibrary.splice(bookNode.dataset.index, 1);
+    updateLibrary();
+  }
+}
+
+function markAsRead(bookNode) {
+  myLibrary[bookNode.dataset.index].read = true;
+}
+
+function shelfClickHandler(e) {
+  let clicked = e.target.value;
+
+  if (clicked === "remove") {
+    removeBook(e.target.parentNode);
+  } else if (clicked === "read") {
+    markAsRead(e.target.parentNode);
+  }
+}
 
 const modalForm = document.querySelector("#new-book-modal");
 const closeBtn = document.querySelector("#new-book-form > .close-btn");
 const submitBtn = document.querySelector("#book-submit-btn");
 const newBookBtn = document.querySelector("#new-book-btn");
+
+const libShelf = document.querySelector("#library-shelf");
 
 newBookBtn.addEventListener("click", (e) => {
   modalForm.showModal();
@@ -79,3 +114,10 @@ closeBtn.addEventListener("click", (e) => {
 });
 
 modalForm.addEventListener("close", addBookToLibrary);
+
+libShelf.addEventListener("click", shelfClickHandler);
+
+myLibrary.push(new Book("The Hobbit", "J.R.R. Tolkien", "295", false));
+myLibrary.push(new Book("Moby-Dick", "Herman Melville", "720", false));
+myLibrary.push(new Book("Frankenstein", "Mary Shelley", "317", false));
+updateLibrary();

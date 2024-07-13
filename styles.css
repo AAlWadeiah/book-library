@@ -18,14 +18,17 @@ main {
     text-align: center;
 }
 
-.main-cta-btn {
+.base-btn {
     padding: 8px 16px;
     border: none;
     border-radius: 10px;
+    letter-spacing: 1px;
     font-weight: 600;
+}
+
+.main-cta-btn {
     background-color: cornflowerblue;
     color: antiquewhite;
-    letter-spacing: 1px;
 }
 
 #new-book-btn {
@@ -51,6 +54,14 @@ main > h2 {
     display: grid;
     grid-template-columns: 1fr;
     gap: 4px;
+}
+
+.remove-book-btn {
+    margin-top: 6px;
+}
+
+.read-book-btn {
+    margin-top: 6px;
 }
 
 /* Styles for modal */
