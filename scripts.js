@@ -13,22 +13,23 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  //   console.log(modalForm);
-  //   console.log(closeBtn);
-  //   console.log(submitBtn);
-  modalForm.showModal();
-  closeBtn.addEventListener("click", () => {
-    modalForm.close();
-  });
-  let title;
-  let author;
-  let pages;
-  //   alert("Add a new book by entering: title, author, number of pages");
-  //   title = prompt("Title");
-  //   author = prompt("Author");
-  //   pages = prompt("Number of pages");
-  myLibrary.push(new Book(title, author, pages, false));
-  updateLibrary();
+  if (modalForm.returnValue === closeBtn.value) {
+    console.log("Closed without entering anything");
+  } else {
+    const titleInput = document.querySelector("#title-input");
+    const authorInput = document.querySelector("#author-input");
+    const pagesInput = document.querySelector("#pages-input");
+
+    myLibrary.push(
+      new Book(titleInput.value, authorInput.value, pagesInput.value, false)
+    );
+    updateLibrary();
+
+    // Clear form
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+  }
 }
 
 function updateLibrary() {
@@ -64,8 +65,17 @@ myLibrary.push(new Book("Frankenstein", "Mary Shelley", "317", false));
 updateLibrary();
 
 const modalForm = document.querySelector("#new-book-modal");
-const closeBtn = document.querySelector("#new-book-modal > .close-btn");
+const closeBtn = document.querySelector("#new-book-form > .close-btn");
 const submitBtn = document.querySelector("#book-submit-btn");
 const newBookBtn = document.querySelector("#new-book-btn");
 
-newBookBtn.addEventListener("click", addBookToLibrary);
+newBookBtn.addEventListener("click", (e) => {
+  modalForm.showModal();
+});
+
+closeBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  modalForm.close(closeBtn.value);
+});
+
+modalForm.addEventListener("close", addBookToLibrary);

@@ -65,6 +65,10 @@ main > h2 {
     background-color: whitesmoke;
 }
 
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+ }
+
 #new-book-form {
     display: flex;
     flex-direction: column;
