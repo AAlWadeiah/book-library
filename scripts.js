@@ -1,15 +1,18 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.info = () => {
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  info() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${
       read ? "read it" : "not read yet"
     }`;
-  };
+  }
 }
 
 function addBookToLibrary() {
@@ -117,7 +120,11 @@ modalForm.addEventListener("close", addBookToLibrary);
 
 libShelf.addEventListener("click", shelfClickHandler);
 
-myLibrary.push(new Book("The Hobbit", "J.R.R. Tolkien", "295", false));
-myLibrary.push(new Book("Moby-Dick", "Herman Melville", "720", false));
-myLibrary.push(new Book("Frankenstein", "Mary Shelley", "317", false));
+let book1 = new Book("The Hobbit", "J.R.R. Tolkien", "295", false);
+let book2 = new Book("Moby-Dick", "Herman Melville", "720", false);
+let book3 = new Book("Frankenstein", "Mary Shelley", "317", false);
+
+myLibrary.push(book1);
+myLibrary.push(book2);
+myLibrary.push(book3);
 updateLibrary();
